@@ -1,0 +1,258 @@
+*** Executar o comando dotnet para verificar as opções disponíveis: 
+marcoscrocci@iMac-de-Marcos dotnetcore % dotnet
+
+Usage: dotnet [options]
+Usage: dotnet [path-to-application]
+
+Options:
+  -h|--help         Display help.
+  --info            Display .NET Core information.
+  --list-sdks       Display the installed SDKs.
+  --list-runtimes   Display the installed runtimes.
+
+path-to-application:
+  The path to an application .dll file to execute.
+-----------------------------------------------------------------------------------------------
+*** Listar as versões de sdks instaladas no computador:
+marcoscrocci@iMac-de-Marcos dotnetcore % dotnet --list-sdks
+3.1.302 [/usr/local/share/dotnet/sdk]
+3.1.404 [/usr/local/share/dotnet/sdk]
+5.0.101 [/usr/local/share/dotnet/sdk]
+
+-----------------------------------------------------------------------------------------------
+*** Verificar a versão atual da sdk do dotnet core.
+marcoscrocci@iMac-de-Marcos dotnetcore % dotnet --version
+5.0.101
+
+-----------------------------------------------------------------------------------------------
+*** Para gerar um projeto em uma versão anterior e mais específica, devemos criar uma arquivo
+chamado global.json, como mostra a seguir:
+{
+    "sdk": {
+        "version": "3.1.404"
+    }
+}
+
+-----------------------------------------------------------------------------------------------
+*** Solicitar ajuda para verificar os comandos do dotnet:
+dotnet -h
+-----------------------------------------------------------------------------------------------
+*** Verificar a lista de templetes:
+dotnet new -l
+-----------------------------------------------------------------------------------------------
+*** Para gerar um novo projeto no template "ASP.NET Core Web API" na versão específica ou na 
+última versão (quando não tiver o global.json), utilizamos o "Short Name":
+dotnet new webapi -n ProAgil.WebAPI
+
+-----------------------------------------------------------------------------------------------
+*** No arquivo /Properties/launchSettings.json, tirar o https, mantendo somente o http:
+Antes: "applicationUrl": "https://localhost:5001;http://localhost:5000",
+Depois: "applicationUrl": "http://localhost:5000",
+*** Com isso, no arquivo Startup.cs, comentar (ou remover) a linha:
+app.UseHttpsRedirection();
+
+-----------------------------------------------------------------------------------------------
+*** Instalar o Entity Framework CLI:
+dotnet tool install --global dotnet-ef
+Site de referência: https://docs.microsoft.com/pt-br/ef/core/cli/dotnet
+-----------------------------------------------------------------------------------------------
+*** Rodar o Entity Framework:
+dotnet ef
+-----------------------------------------------------------------------------------------------
+*** Ajuda para criar uma migration para criar o banco de dados:
+dotnet ef migrations -h
+-----------------------------------------------------------------------------------------------
+*** Utilizar a Extensão NuGet Gallery e instalar:
+Microsoft.EntityFrameworkCore.Design
+-----------------------------------------------------------------------------------------------
+*** Criar e inicializar uma migration para criar o banco de dados:
+dotnet ef migrations add init
+marcoscrocci@iMac-de-Marcos ProAgil.WebAPI % dotnet ef migrations add init
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
+Observações: Este comando cria a pasta Migrations no projeto e os scripts iniciais para criar a 
+tabela Eventos, que já foi definida no projeto.
+-----------------------------------------------------------------------------------------------
+*** Ajuda para a opção database das migrations:
+dotnet ef database -h
+-----------------------------------------------------------------------------------------------
+*** Atualizar ou cria o banco de dados com base nas migrations:
+dotnet ef database update
+Observações: Este comando deverá criar o arquivo ProAgil.db na pasta raiz do projeto.
+-----------------------------------------------------------------------------------------------
+*** Baixar o software SQLite Browser no site:
+https://sqlitebrowser.org/dl/
+-----------------------------------------------------------------------------------------------
+*** No curso, no Teste 4, o instrutor pede para adicionar o campo ImagemURL na classe 
+Evento.csv. Para gerar nova migrations para atualizar o banco de dados, foi necessário executar 
+os comandos:
+dotnet ef migrations add 'EventoImagemUrl'
+dotnet ef database update
+-----------------------------------------------------------------------------------------------
+*** No curso é substituído o ActionResult que mais apropriado para ser utilizado com o Razor,
+por IActionResult. Deixei um histórico no Github.
+
+-----------------------------------------------------------------------------------------------
+
+Executar o projeto dotnet:
+dotnet run watch
+
+Observações: O watch é opcional e serve para o sistema recompilar após uma alteração no código.
+-----------------------------------------------------------------------------------------------
+*** Instalação do Angular 11
+https://angular.io/guide/setup-local
+
+-----------------------------------------------------------------------------------------------
+*** Instalação do Angular 12
+https://angular.io/guide/setup-local
+https://angular.io/cli
+-----------------------------------------------------------------------------------------------
+*** Verificar a versão do Angular
+ng --version
+-----------------------------------------------------------------------------------------------
+*** Criar o projeto do Angular
+marcoscrocci@iMac-de-Marcos ~ % ng new ProAgil-App
+? Would you like to add Angular routing? Yes
+? Which stylesheet format would you like to use? CSS
+-----------------------------------------------------------------------------------------------
+*** Executar o projeto do Angular com a opção para já abrir.
+cd ProAgil-App
+ng serve -o
+-----------------------------------------------------------------------------------------------
+*** Extensões do VS Code instaladas para o curso.
+Debugger for Chrome, Angular Files, Angular Language Service, Angular2-switcher, 
+Auto Rename Tag, Bracket Pair Colorizer 2, C# for Visual Studio Code, C# Extensions,
+Material Icon Theme, npm, NuGet Gallery, NuGet Package Manager, Path Intellisense,
+Prettier, TSLint, Angular Snippets (Version 12), Angular UI Bootstrap Snippets
+-----------------------------------------------------------------------------------------------
+*** No projeto Angular, instalar o bootstrap:
+https://getbootstrap.com/docs/5.1/getting-started/download/
+npm install bootstrap
+-----------------------------------------------------------------------------------------------
+*** No projeto Angular, instalar o fontawesome:
+https://fontawesome.com/v5.15/how-to-use/on-the-web/setup/using-package-managers
+npm install --save @fortawesome/fontawesome-free
+-----------------------------------------------------------------------------------------------
+*** Referenciar o bootstrap e o fontawesome no projeto Angular:
+Abrir o arquivo angular.json e importar os arquivos:
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+-----------------------------------------------------------------------------------------------
+*** Pegar a Navbar do exemplo do bootstrap abaixo:
+https://getbootstrap.com/docs/4.0/examples/jumbotron/
+-----------------------------------------------------------------------------------------------
+*** Criar o projeto Domain:
+dotnet new classlib -n ProAgil.Domain
+-----------------------------------------------------------------------------------------------
+*** Criar o projeto Repository:
+dotnet new classlib -n ProAgil.Repository
+-----------------------------------------------------------------------------------------------
+*** Criar o projeto Solução:
+dotnet new sln -n ProAgil
+-----------------------------------------------------------------------------------------------
+*** Referenciar o projeto Domain no projeto Repository:
+marcoscrocci@iMac-de-Marcos ProAgilMarcos % dotnet add ProAgil.Repository/ProAgil.Repository.csproj reference ProAgil.Domain/ProAgil.Domain.csproj 
+A referência ‘..\ProAgil.Domain\ProAgil.Domain.csproj’ foi adicionada ao projeto.
+-----------------------------------------------------------------------------------------------
+*** Referenciar o projeto Domain no projeto API:
+marcoscrocci@iMac-de-Marcos ProAgilMarcos % dotnet add ProAgil.WebAPI/ProAgil.WebAPI.csproj reference ProAgil.Domain/ProAgil.Domain.csproj 
+A referência ‘..\ProAgil.Domain\ProAgil.Domain.csproj’ foi adicionada ao projeto.
+-----------------------------------------------------------------------------------------------
+*** Referenciar o projeto Repository no projeto API:
+marcoscrocci@iMac-de-Marcos ProAgilMarcos % dotnet add ProAgil.WebAPI/ProAgil.WebAPI.csproj reference ProAgil.Repository/ProAgil.Repository.csproj 
+A referência ‘..\ProAgil.Repository\ProAgil.Repository.csproj’ foi adicionada ao projeto.
+-----------------------------------------------------------------------------------------------
+*** Referenciar/Adicionar todos os projetos na Solução:
+marcoscrocci@iMac-de-Marcos ProAgilMarcos % dotnet sln ProAgil.sln add ProAgil.WebAPI/ProAgil.WebAPI.csproj ProAgil.Repository/ProAgil.Repository.csproj ProAgil.Domain/ProAgil.Domain.csproj 
+O projeto ‘ProAgil.WebAPI/ProAgil.WebAPI.csproj’ foi adicionado à solução.
+O projeto ‘ProAgil.Repository/ProAgil.Repository.csproj’ foi adicionado à solução.
+O projeto ‘ProAgil.Domain/ProAgil.Domain.csproj’ foi adicionado à solução.
+-----------------------------------------------------------------------------------------------
+*** Compilar a Solução:
+marcoscrocci@iMac-de-Marcos ProAgilMarcos % dotnet build
+Microsoft(R) Build Engine versão 16.8.0+126527ff1 para .NET 
+Copyright (C) Microsoft Corporation. Todos os direitos reservados.
+
+  Determinando os projetos a serem restaurados...
+  /Users/marcoscrocci/Projetos/dotnetcore/ProAgilMarcos/ProAgil.Repository/ProAgil.Repository.csproj restaurado (em 126 ms).
+  /Users/marcoscrocci/Projetos/dotnetcore/ProAgilMarcos/ProAgil.Domain/ProAgil.Domain.csproj restaurado (em 126 ms).
+  /Users/marcoscrocci/Projetos/dotnetcore/ProAgilMarcos/ProAgil.WebAPI/ProAgil.WebAPI.csproj restaurado (em 715 ms).
+  ProAgil.Domain -> /Users/marcoscrocci/Projetos/dotnetcore/ProAgilMarcos/ProAgil.Domain/bin/Debug/net5.0/ProAgil.Domain.dll
+  ProAgil.Repository -> /Users/marcoscrocci/Projetos/dotnetcore/ProAgilMarcos/ProAgil.Repository/bin/Debug/net5.0/ProAgil.Repository.dll
+  ProAgil.WebAPI -> /Users/marcoscrocci/Projetos/dotnetcore/ProAgilMarcos/ProAgil.WebAPI/bin/Debug/net5.0/ProAgil.WebAPI.dll
+
+Compilação com êxito.
+    0 Aviso(s)
+    0 Erro(s)
+
+Tempo Decorrido 00:00:09.52
+-----------------------------------------------------------------------------------------------
+*** Para criar as migrations direto no projeto Repository ocorre um erro:
+marcoscrocci@iMac-de-Marcos ProAgil.Repository % dotnet ef migrations add init
+Build started...
+Build succeeded.
+It was not possible to find any compatible framework version
+The framework 'Microsoft.NETCore.App', version '2.0.0' was not found.
+  - The following frameworks were found:
+      3.1.6 at [/usr/local/share/dotnet/shared/Microsoft.NETCore.App]
+      3.1.10 at [/usr/local/share/dotnet/shared/Microsoft.NETCore.App]
+      3.1.17 at [/usr/local/share/dotnet/shared/Microsoft.NETCore.App]
+      5.0.1 at [/usr/local/share/dotnet/shared/Microsoft.NETCore.App]
+      5.0.8 at [/usr/local/share/dotnet/shared/Microsoft.NETCore.App]
+
+You can resolve the problem by installing the specified framework and/or SDK.
+
+The specified framework can be found at:
+  - https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&framework_version=2.0.0&arch=x64&rid=osx.11.0-x64
+-----------------------------------------------------------------------------------------------
+*** Para criar as migrations no Repository API devemos referenciar o projeto API:
+marcoscrocci@iMac-de-Marcos ProAgilMarcos % cd ProAgil.Repository                                            
+marcoscrocci@iMac-de-Marcos ProAgil.Repository % dotnet ef --startup-project ../ProAgil.WebAPI migrations add init
+Build started...
+Build succeeded.
+The Entity Framework tools version '5.0.8' is older than that of the runtime '5.0.9'. Update the tools for the latest features and bug fixes.
+Done. To undo this action, use 'ef migrations remove'
+-----------------------------------------------------------------------------------------------
+*** Para executar as migrations e criar o banco de dados:
+marcoscrocci@iMac-de-Marcos ProAgil.Repository % dotnet ef --startup-project ../ProAgil.WebAPI database update 
+Build started...
+Build succeeded.
+The Entity Framework tools version '5.0.8' is older than that of the runtime '5.0.9'. Update the tools for the latest features and bug fixes.
+Done.
+-----------------------------------------------------------------------------------------------
+*** Iniciar o serviço do Angular:
+marcoscrocci@iMac-de-Marcos ProAgil-App % ng serve
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names         |      Size
+vendor.js           | vendor        |   2.79 MB
+styles.css          | styles        | 218.86 kB
+polyfills.js        | polyfills     | 128.51 kB
+main.js             | main          |  32.81 kB
+runtime.js          | runtime       |   6.62 kB
+
+                    | Initial Total |   3.17 MB
+
+Build at: 2021-09-05T20:32:40.868Z - Hash: 52357a84b34eb8810542 - Time: 12054ms
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+✔ Compiled successfully.
+-----------------------------------------------------------------------------------------------
+*** Sobre a diferença de Promises e Observables:
+https://pt.stackoverflow.com/questions/207362/qual-%C3%A9-a-diferen%C3%A7a-entre-promises-e-observables/348771#348771
+-----------------------------------------------------------------------------------------------
+*** NGX - Bootstrap:
+https://valor-software.com/ngx-bootstrap/#/
+npm install ngx-bootstrap --save
+
+-----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
