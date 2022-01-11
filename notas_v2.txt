@@ -1,0 +1,14 @@
+-----------------------------------------------------------------------------------------------
+*** Criar o arquivo global.json por linha de comando:
+> dotnet new globaljson --sdk-version 5.0.404 (se o arquivo já existir, acrescente --force no final do comando)
+-----------------------------------------------------------------------------------------------
+*** Criar o projeto WebAPI e entrar na pasta do projeto:
+> dotnet new webapi -n ProEventos.API
+> cd ProEventos.API/
+-----------------------------------------------------------------------------------------------
+*** Executar o projeto WebAPI:
+> dotnet watch run
+-----------------------------------------------------------------------------------------------
+*** Gerar o certificado digital do HTTPS:
+> dotnet dev-certs https --trust
+-----------------------------------------------------------------------------------------------
