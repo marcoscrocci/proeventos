@@ -1,4 +1,14 @@
 -----------------------------------------------------------------------------------------------
+*** Listar as versões de sdks instaladas no computador:
+marcoscrocci@iMac-de-Marcos dotnetcore % dotnet --list-sdks
+3.1.302 [/usr/local/share/dotnet/sdk]
+3.1.404 [/usr/local/share/dotnet/sdk]
+5.0.101 [/usr/local/share/dotnet/sdk]
+-----------------------------------------------------------------------------------------------
+*** Verificar a versão atual da sdk do dotnet core.
+marcoscrocci@iMac-de-Marcos dotnetcore % dotnet --version
+5.0.101
+-----------------------------------------------------------------------------------------------
 *** Criar o arquivo global.json por linha de comando:
 > dotnet new globaljson --sdk-version 5.0.404 (se o arquivo já existir, acrescente --force no final do comando)
 -----------------------------------------------------------------------------------------------
