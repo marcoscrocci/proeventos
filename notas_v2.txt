@@ -22,3 +22,31 @@ marcoscrocci@iMac-de-Marcos dotnetcore % dotnet --version
 *** Gerar o certificado digital do HTTPS:
 > dotnet dev-certs https --trust
 -----------------------------------------------------------------------------------------------
+*** Listar as ferramentas do .NET Core:
+> dotnet tool list --global
+-----------------------------------------------------------------------------------------------
+*** Instalar o Entity Framework CLI:
+dotnet tool install --global dotnet-ef
+Site de referência: https://docs.microsoft.com/pt-br/ef/core/cli/dotnet
+-----------------------------------------------------------------------------------------------
+*** Instalar o Entity Framework no Projeto:
+Devemos instalar a Extensão NuGet Gallery
+Pressionar Command+Shift+P e procurar NuGet: Open NuGet Gallery
+Filtrar: EntityFrameworkCore
+Selecionar a versão compatível com o .NET Core, o projeto e instalar
+Filtrar: EntityFrameworkCore.Design
+Selecionar a versão compatível com o .NET Core, o projeto e instalar
+Filtrar: EntityFrameworkCore.Tools
+Selecionar a versão compatível com o .NET Core, o projeto e instalar
+Filtrar: EntityFrameworkCore.SQLite
+Selecionar a versão compatível com o .NET Core, o projeto e instalar
+-----------------------------------------------------------------------------------------------
+*** Utilizar o dotnet ef 
+dotnet ef -h
+dotnet ef migrations -h
+dotnet ef migrations list
+dotnet ef migrations add Initial -o Data/Migrations
+dotnet ef database -h
+dotnet ef database update
+
+-----------------------------------------------------------------------------------------------
