@@ -48,5 +48,9 @@ dotnet ef migrations list
 dotnet ef migrations add Initial -o Data/Migrations
 dotnet ef database -h
 dotnet ef database update
-
+-----------------------------------------------------------------------------------------------
+*** Criar o projeto do Angular
+marcoscrocci@iMac-de-Marcos ~ % ng new ProEventos-App
+? Would you like to add Angular routing? Yes
+? Which stylesheet format would you like to use? CSS
 -----------------------------------------------------------------------------------------------
