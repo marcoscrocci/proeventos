@@ -1,15 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-eventos',
-  templateUrl: './eventos.component.html',
-  styleUrls: ['./eventos.component.scss']
+    selector: 'app-eventos',
+    templateUrl: './eventos.component.html',
+    styleUrls: ['./eventos.component.scss'],
 })
 export class EventosComponent implements OnInit {
 
-  constructor() { }
+    public eventos: any = [
+        {
+            Tema: 'Angular',
+            Local: 'São Paulo'
+        },
+        {
+            Tema: 'React',
+            Local: 'Rio de Janeiro'
+        },
+        {
+            Tema: 'Vue',
+            Local: 'Mogi das Cruzes'
+        }
+    ];
 
-  ngOnInit(): void {
-  }
 
+    constructor() {}
+
+    ngOnInit(): void {}
 }
